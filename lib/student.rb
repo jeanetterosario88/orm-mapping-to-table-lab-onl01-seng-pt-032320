@@ -15,9 +15,30 @@ def self.create_table
         name TEXT,
         grade INTEGER
         )
+    SQL
     DB[:conn].execute(sql)
   end
 
+  def self.drop_table
+    sql = <<-SQL
+        DROP TABLE students
+    SQL
+    DB[:conn].execute(sql)
+  end
+
+  def save
+    sql = <<-SQL
+      INSERT INTO students (name, grade)
+        VALUES (?, ?)
+    SQL
+    DB[:conn].execute(sql, self.name, self.grade)
+  end
+
+  ef self.create(name:, grade:)
+    student = Student.new(name, grade)
+    student.save
+    student
+  end
 
 
 end
