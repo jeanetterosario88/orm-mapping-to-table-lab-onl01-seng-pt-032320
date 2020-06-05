@@ -37,7 +37,7 @@ def self.create_table
     DB[:conn].execute(sql, self.name, self.grade)
   end
 
-  ef self.create(name:, grade:)
+  def self.create(name, grade)
     student = Student.new(name, grade)
     student.save
     student
